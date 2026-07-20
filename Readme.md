@@ -1,45 +1,60 @@
-# Tect Utility API
+# 📝 Text Utility API
 
 A REST API built with FastAPI that performs basic text analysis.
 
-## Features 
--Word count
--Character count
--Estimated reading time
--Sentence count
--Average Sentence Length
--Top 5 Keyword extraction
+## Features
+
+- Word count
+- Character count
+- Estimated reading time
+- Sentence count
+- Average sentence length
+- Top 5 keyword extraction
 
 ## Tech Stack
--Python
--FastAPI
--Pydantic
--Uvicorn
+
+- Python
+- FastAPI
+- Pydantic
+- Uvicorn
 
 ## Installation
-git clone https://github.com/ /tex-utility-api.git
-cd text-utlity-api
 
-python -m venv .venv
+```bash
+git clone https://github.com/<your-username>/text-utility-api.git
+cd text-utility-api
+
+python -m venv venv
 
 # Windows
-.venv/Scripts/Activate/ps1
+venv\Scripts\activate
 
-pip install -r requiremnts.txt
+pip install -r requirements.txt
+```
 
-## Run 
+## Run
+
+```bash
 uvicorn app.main:app --reload
+```
 
-SERVER:
-https://127.0.0.1:8000
+Server:
+
+```
+http://127.0.0.1:8000
+```
 
 Swagger UI:
-https://127.0.0.1:8000/docs
+
+```
+http://127.0.0.1:8000/docs
+```
+
+---
 
 ## API Endpoints
 
-### POST /analyse/basic
-
+### POST /analyze/basic
 
 Request
 
