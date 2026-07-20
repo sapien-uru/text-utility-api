@@ -31,7 +31,7 @@ def analyse_basic(request: TextRequest):
 
     return{
         "word_count":word_count,
-        "chareacter_count":character_count,
+        "character_count":character_count,
         "reading_time_minutes":reading_time
     }
 

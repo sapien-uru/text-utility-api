@@ -54,7 +54,7 @@ http://127.0.0.1:8000/docs
 
 ## API Endpoints
 
-### POST /analyze/basic
+### POST /analyse/basic
 
 Request
 
@@ -76,7 +76,7 @@ Response
 
 ---
 
-### POST /analyze/sentences
+### POST /analyse/sentences
 
 Response
 
@@ -89,7 +89,7 @@ Response
 
 ---
 
-### POST /analyze/keywords
+### POST /analyse/keywords
 
 Response
 
