@@ -1,3 +1,6 @@
+from fastapi import FastAPI,Request
+from fastapi.responses import JSONResponse
+from app.core.logger import logger
 from collections import Counter
 import re
 from fastapi import FastAPI, HTTPException
@@ -5,6 +8,9 @@ from pydantic import BaseModel
 
 
 app= FastAPI()
+
+logger.info("Application started Successfully.")
+
 
 STOPWORDS={
     "the","is","am","are","was","were",
@@ -15,6 +21,19 @@ STOPWORDS={
 
 class TextRequest(BaseModel):
     text:str
+
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request,exc:Exception):
+    logger.exception(f"Unhandled Exception:{exc}")
+
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail":"Internal Server Error"
+        },
+    )
+    
     
 @app.post("/analyse/basic")
 def analyse_basic(request: TextRequest):
@@ -80,3 +99,6 @@ def analyse_keywords(request:TextRequest):
         "keywords":top_keywords
     }
 
+@app.get("/crash")
+def crash():
+    raise Exception("Testing global exception handler")
