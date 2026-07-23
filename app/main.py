@@ -5,11 +5,20 @@ from collections import Counter
 import re
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from app.routers.text import router as text_router
 
 
 app= FastAPI()
 
+app = FastAPI(
+    title="Text Utility API",
+    version="1.0.0"
+)
+
+app.include_router(text_router)
+
 logger.info("Application started Successfully.")
+
 
 
 STOPWORDS={
