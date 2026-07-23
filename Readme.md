@@ -1,36 +1,43 @@
-# 📝 Text Utility API
+# Text Utility API
 
-A REST API built with FastAPI that performs basic text analysis.
+A FastAPI-based REST API for text analysis and AI-powered summarization.
 
 ## Features
 
-- Word count
-- Character count
-- Estimated reading time
-- Sentence count
-- Average sentence length
-- Top 5 keyword extraction
+- Word Count
+- Character Count
+- Sentence Analysis
+- Keyword Extraction
+- AI Text Summarization (OpenRouter)
 
-## Tech Stack
-
-- Python
-- FastAPI
-- Pydantic
-- Uvicorn
+---
 
 ## Installation
 
 ```bash
-git clone https://github.com/<your-username>/text-utility-api.git
+git clone <repo-url>
 cd text-utility-api
 
-python -m venv venv
-
+python -m venv .venv
+source .venv/bin/activate
 # Windows
-venv\Scripts\activate
+.venv\Scripts\activate
 
 pip install -r requirements.txt
 ```
+
+---
+
+## Environment Variables
+
+Create a `.env` file.
+
+```env
+OPENROUTER_API_KEY=*****
+OPENROUTER_MODEL=deepseek/deepseek-chat-v3-0324:free
+```
+
+---
 
 ## Run
 
@@ -38,13 +45,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Server:
-
-```
-http://127.0.0.1:8000
-```
-
-Swagger UI:
+Swagger:
 
 ```
 http://127.0.0.1:8000/docs
@@ -52,15 +53,40 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## API Endpoints
+## Endpoints
 
-### POST /analyse/basic
+### POST `/analyse/basic`
+
+Returns:
+
+- Word count
+- Character count
+- Reading time
+
+---
+
+### POST `/analyse/sentences`
+
+Returns:
+
+- Sentence count
+- Average sentence length
+
+---
+
+### POST `/analyse/keywords`
+
+Returns the top keywords.
+
+---
+
+### POST `/analyse/summarise`
 
 Request
 
 ```json
 {
-  "text": "Hello world"
+  "text": "Artificial Intelligence is changing software development..."
 }
 ```
 
@@ -68,46 +94,16 @@ Response
 
 ```json
 {
-  "word_count": 2,
-  "character_count": 11,
-  "reading_time_minutes": 0.01
+  "summary": "Artificial intelligence is improving software development by helping developers write code and automate tasks."
 }
 ```
 
 ---
 
-### POST /analyse/sentences
+## Tech Stack
 
-Response
-
-```json
-{
-  "sentence_count": 1,
-  "average_sentence_length": 2.0
-}
-```
-
----
-
-### POST /analyse/keywords
-
-Response
-
-```json
-{
-  "keywords": [
-    {
-      "word": "hello",
-      "count": 1
-    },
-    {
-      "word": "world",
-      "count": 1
-    }
-  ]
-}
-```
-
-## License
-
-MIT
+- FastAPI
+- Pydantic
+- OpenRouter
+- OpenAI Python SDK
+- Python
